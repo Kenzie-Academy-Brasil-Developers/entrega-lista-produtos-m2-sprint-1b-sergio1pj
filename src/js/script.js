@@ -32,9 +32,25 @@ function filtrarPorNome() {
     });
     return produtosFiltrados;
 }
-
+function filtrarPorSecao(secao) {
+    let produtosFiltrados = produtos.filter((element, index, array) => {
+        return secao == element.secao;
+    });
+    return produtosFiltrados;
+}
 const botaoBuscaPorNome = document.querySelector(".estiloGeralBotoes--botaoBuscaPorNome");
 botaoBuscaPorNome.addEventListener("click", () => {
     const novoProdutos = filtrarPorNome();
     criarLista(criarCard, novoProdutos);
 });
+const botoesContainer = document.querySelector("#botoesContainer");
+botoesContainer.addEventListener("click", (e) => {
+    const alvo = e.target;
+    if(alvo.innerText == "Todos Produtos") {
+        criarLista(criarCard, produtos);
+    } else {
+        const novoProdutos = filtrarPorSecao(`${e.target.innerText}`);
+        criarLista(criarCard, novoProdutos);
+    }
+});
+
