@@ -33,8 +33,8 @@ function filtrarPorNome() {
     return produtosFiltrados;
 }
 
-const buttonPesquisar = document.querySelector(".estiloGeralBotoes--botaoBuscaPorNome");
-buttonPesquisar.addEventListener("click", () => {
+const botaoBuscaPorNome = document.querySelector(".estiloGeralBotoes--botaoBuscaPorNome");
+botaoBuscaPorNome.addEventListener("click", () => {
     const novoProdutos = filtrarPorNome();
     criarLista(criarCard, novoProdutos);
 });
