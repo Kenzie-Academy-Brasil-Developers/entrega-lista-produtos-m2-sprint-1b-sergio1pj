@@ -20,7 +20,7 @@ function criarLista(callbackFn, thisArg) {
     thisArg.forEach((element, index, array) => {
         tagUl.appendChild(callbackFn(element));
     })
-    return "Os item foram adicionados a lista!"
+    mostrarValorTotal(calcularValorTotal, thisArg);
 }
 function filtrarPorNome() {
     const tagInput = document.querySelector(".campoBuscaPorNome");
@@ -51,4 +51,13 @@ botoesContainer.addEventListener("click", (e) => {
         criarLista(criarCard, novoProdutos);
     }
 });
+function calcularValorTotal(array) {
+    let valorTotal = 0;
+    array.forEach((element, index, array) => {valorTotal += element.preco});
+    return valorTotal;
+}
+function mostrarValorTotal(callbackFn, thisArg) {
+    let tagSpan = document.querySelector(".priceContainer span");
+    tagSpan.innerText = `R$ ${callbackFn(thisArg)}.00`;
+}
 criarLista(criarCard, produtos);
