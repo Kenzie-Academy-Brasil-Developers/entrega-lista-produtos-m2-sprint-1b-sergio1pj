@@ -22,8 +22,6 @@ function criarLista(callbackFn, thisArg) {
     })
     return "Os item foram adicionados a lista!"
 }
-criarLista(criarCard, produtos);
-
 function filtrarPorNome() {
     const tagInput = document.querySelector(".campoBuscaPorNome");
     let nomeBuscado = tagInput.value.toLowerCase();
@@ -53,4 +51,4 @@ botoesContainer.addEventListener("click", (e) => {
         criarLista(criarCard, novoProdutos);
     }
 });
-
+criarLista(criarCard, produtos);
