@@ -16,9 +16,25 @@ function criarCard(objeto) {
 }
 function criarLista(callbackFn, thisArg) {
     const tagUl = document.querySelector(".containerListaProdutos ul");
+    tagUl.innerHTML = "";
     thisArg.forEach((element, index, array) => {
         tagUl.appendChild(callbackFn(element));
     })
     return "Os item foram adicionados a lista!"
 }
 criarLista(criarCard, produtos);
+
+function filtrarPorNome() {
+    const tagInput = document.querySelector(".campoBuscaPorNome");
+    let nomeBuscado = tagInput.value.toLowerCase();
+    let produtosFiltrados = produtos.filter((element, index, array) => {
+        return nomeBuscado == element.nome.toLowerCase();
+    });
+    return produtosFiltrados;
+}
+
+const buttonPesquisar = document.querySelector(".estiloGeralBotoes--botaoBuscaPorNome");
+buttonPesquisar.addEventListener("click", () => {
+    const novoProdutos = filtrarPorNome();
+    criarLista(criarCard, novoProdutos);
+});
