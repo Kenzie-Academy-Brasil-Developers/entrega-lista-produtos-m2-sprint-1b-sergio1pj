@@ -1,17 +1,27 @@
 // seu código aqui
 function criarCard(objeto) {
+    const criarOl = (objeto) => {
+        const ol = document.createElement("ol");
+        objeto.componentes.forEach((element) => {
+            const li = document.createElement("li");
+            li.innerText = element;
+            ol.appendChild(li);
+        })
+        return ol;
+    }   
     const imgAlt = "Imagem "
     const tagLi = document.createElement("li");
     const tagImg = document.createElement("img");
     const tagH3 = document.createElement("h3");
     const tagSpan = document.createElement("span");
+    const tagOl = criarOl(objeto);
     const tagP = document.createElement("p");
     tagImg.src = objeto.img;
     tagImg.alt = imgAlt.concat(`${objeto.nome.toLowerCase()}`);
     tagH3.innerText = objeto.nome;
     tagSpan.innerText = objeto.secao;
     tagP.innerText = `R$ ${objeto.preco}`;
-    tagLi.append(tagImg, tagH3, tagSpan, tagP);
+    tagLi.append(tagImg, tagH3, tagSpan, tagOl, tagP);
     return tagLi;
 }
 function criarLista(thisArg) {
