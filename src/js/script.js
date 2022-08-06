@@ -40,7 +40,7 @@ function filtrarPorNome() {
     const tagInput = document.querySelector(".campoBuscaPorNome");
     let nomeBuscado = tagInput.value.toLowerCase();
     let produtosFiltrados = produtos.filter((element) => {
-        return nomeBuscado == element.nome.toLowerCase();
+        return nomeBuscado == element.nome.toLowerCase() || nomeBuscado == element.categoria.toLowerCase() || nomeBuscado == element.secao.toLowerCase();
     });
     return produtosFiltrados;
 }
