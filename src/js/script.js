@@ -16,12 +16,16 @@ function criarCard(objeto) {
     const tagSpan = document.createElement("span");
     const tagOl = criarOl(objeto);
     const tagP = document.createElement("p");
+    const tagButton = document.createElement("button");
+    const tagDiv = document.createElement("div");
     tagImg.src = objeto.img;
     tagImg.alt = imgAlt.concat(`${objeto.nome.toLowerCase()}`);
     tagH3.innerText = objeto.nome;
     tagSpan.innerText = objeto.secao;
     tagP.innerText = `R$ ${objeto.preco}`;
-    tagLi.append(tagImg, tagH3, tagSpan, tagOl, tagP);
+    tagButton.innerText = "Comprar";
+    tagDiv.append(tagP, tagButton);
+    tagLi.append(tagImg, tagH3, tagSpan, tagOl, tagDiv);
     return tagLi;
 }
 function criarLista(thisArg) {
