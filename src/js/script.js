@@ -38,7 +38,7 @@ function criarLista(thisArg) {
 }
 function filtrarPorNome() {
     const tagInput = document.querySelector(".campoBuscaPorNome");
-    let nomeBuscado = tagInput.value.toLowerCase();
+    let nomeBuscado = tagInput.value.trim().toLowerCase();
     let produtosFiltrados = produtos.filter((element) => {
         return nomeBuscado == element.nome.toLowerCase() || nomeBuscado == element.categoria.toLowerCase() || nomeBuscado == element.secao.toLowerCase();
     });
