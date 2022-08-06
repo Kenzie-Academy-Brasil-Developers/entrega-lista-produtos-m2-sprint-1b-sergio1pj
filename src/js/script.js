@@ -10,7 +10,7 @@ function criarCard(objeto) {
     tagImg.alt = imgAlt.concat(`${objeto.nome.toLowerCase()}`);
     tagH3.innerText = objeto.nome;
     tagSpan.innerText = objeto.secao;
-    tagP.innerText = `R$ ${objeto.preco}.00`;
+    tagP.innerText = `R$ ${objeto.preco}`;
     tagLi.append(tagImg, tagH3, tagSpan, tagP);
     return tagLi;
 }
@@ -55,7 +55,7 @@ botoesContainer.forEach((botao) => {
 })
 function calcularValorTotal(array) {
     let valorTotal = 0;
-    array.forEach((element) => {valorTotal += element.preco});
+    array.forEach((element) => {valorTotal += parseFloat(element.preco)});
     return valorTotal;
 }
 function mostrarValorTotal(thisArg) {
