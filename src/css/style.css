@@ -222,4 +222,149 @@ display: flex;
 justify-content: space-between;
 padding: 5px;
 }
- 
+
+.containerCarrinho {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.containerCarrinho h2 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #212529;
+    margin-bottom: 20px;
+}
+
+.containerCarrinho ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.containerCarrinho ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.containerCarrinho ul li img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+.containerCarrinho ul li div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.containerCarrinho ul li div h3 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #212529;
+    margin-bottom: 20px;
+}
+
+.containerCarrinho ul li div p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #868E96;
+    margin-bottom: 20px;
+}
+
+.containerCarrinho ul li div span {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #868E96;
+    margin-bottom: 20px;
+}
+
+.containerCarrinho ul li div button {
+    background: rgba(18, 184, 134, 0.05);
+    border-radius: 8px;
+    border: 1.5px solid rgba(18, 184, 134, 0.05);
+    color: #12b886;
+    padding: 5px;
+    transition: 0.5s;
+}
+
+.carrinhoVazio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.carrinhoVazio h3 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #212529;
+    margin-bottom: 20px;
+}
+
+.carrinhoVazio img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+.carrinhoInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.carrinhoInfo div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.carrinhoInfo div h3 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #212529;
+    margin-bottom: 20px;
+}
+
+.carrinhoInfo div p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #868E96;
+    margin-bottom: 20px;
+}

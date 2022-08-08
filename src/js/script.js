@@ -57,6 +57,7 @@ const filtrarPorSecao = secao => {
 const criarCardCarrinho = card => {
     const tagLi = document.createElement("li");
     const tagImg = document.createElement("img");
+    const tagDiv = document.createElement("div");
     const tagH3 = document.createElement("h3");
     const tagSpan = document.createElement("span");
     const tagP = document.createElement("p");
@@ -66,9 +67,10 @@ const criarCardCarrinho = card => {
     tagSpan.innerText = card.querySelector("span").innerText;
     tagP.innerText = card.querySelector("p").innerText;
     tagButton.innerText = "Remover";
-    tagLi.append(tagImg, tagH3, tagSpan, tagP, tagButton);
+    tagDiv.append(tagH3, tagSpan, tagP, tagButton);
+    tagLi.append(tagImg, tagDiv);
     tagButton.addEventListener("click", (e) => {
-        e.currentTarget.parentNode.remove();
+        e.currentTarget.parentNode.parentNode.remove();
         mostrarValorTotal();
     });
     return tagLi;
