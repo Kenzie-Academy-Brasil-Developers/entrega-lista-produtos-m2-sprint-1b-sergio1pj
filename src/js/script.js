@@ -1,5 +1,5 @@
 // seu código aqui
-function criarCard(objeto) {
+const criarCard = objeto => {
     const criarOl = (objeto) => {
         const ol = document.createElement("ol");
         objeto.componentes.forEach((element) => {
@@ -28,15 +28,15 @@ function criarCard(objeto) {
     tagLi.append(tagImg, tagH3, tagSpan, tagOl, tagDiv);
     return tagLi;
 }
-function criarLista(thisArg) {
+const criarLista = array => {
     const tagUl = document.querySelector(".containerListaProdutos ul");
     tagUl.innerHTML = "";
-    thisArg.forEach((element) => {
+    array.forEach((element) => {
         tagUl.appendChild(criarCard(element));
     })
-    mostrarValorTotal(thisArg);
+    mostrarValorTotal(array);
 }
-function filtrarPorNome() {
+const filtrarPorNome = () => {
     const tagInput = document.querySelector(".campoBuscaPorNome");
     let nomeBuscado = tagInput.value.trim().toLowerCase();
     let produtosFiltrados = produtos.filter((element) => {
@@ -44,7 +44,7 @@ function filtrarPorNome() {
     });
     return produtosFiltrados;
 }
-function filtrarPorSecao(secao) {
+const filtrarPorSecao = secao => {
     let produtosFiltrados = produtos.filter((element) => {
         return secao == element.secao;
     });
@@ -67,13 +67,13 @@ botoesContainer.forEach((botao) => {
         }
     });
 })
-function calcularValorTotal(array) {
+const calcularValorTotal = array => {
     let valorTotal = 0;
     array.forEach((element) => {valorTotal += parseFloat(element.preco)});
     return valorTotal;
 }
-function mostrarValorTotal(thisArg) {
+const mostrarValorTotal = array => {
     let tagSpan = document.querySelector(".priceContainer span");
-    tagSpan.innerText = `R$ ${calcularValorTotal(thisArg)}.00`;
+    tagSpan.innerText = `R$ ${calcularValorTotal(array)}.00`;
 }
 criarLista(produtos);
