@@ -104,7 +104,7 @@ const calcularValorTotal = () => {
     });
   return {"soma": soma, "quantidade": quantidade};
 }
-const AtualizaCarrinho = (total) => {
+const AtualizaCarrinho = total => {
     const carrinho = document.querySelector(".containerCarrinho");
     const carrinhoInfo = document.querySelector(".carrinhoInfo");
     const carrinhoVazio = document.querySelector(".carrinhoVazio");
@@ -129,7 +129,7 @@ const AtualizaCarrinho = (total) => {
         }
     }
 }
-const criarCarrinhoInfo = (total) => {
+const criarCarrinhoInfo = total => {
     const carrinhoInfo = document.createElement("div");
     const carrinhoInfoQuantidade = document.createElement("div");
     const carrinhoInfoValorTotal = document.createElement("div");
