@@ -1,26 +1,26 @@
-const criarCard = objeto => {
-    const criarOl = (objeto) => {
-        const ol = document.createElement("ol");
-        objeto.componentes.forEach((element) => {
-            const li = document.createElement("li");
-            li.innerText = element;
-            ol.appendChild(li);
+const criarCard = produto => {
+    const criarOl = (produto) => {
+        const tagOl = document.createElement("ol");
+        produto.componentes.forEach((nutriente) => {
+            const tagLi = document.createElement("li");
+            tagLi.innerText = nutriente;
+            tagOl.appendChild(tagLi);
         })
-        return ol;
+        return tagOl;
     }   
     const tagLi = document.createElement("li");
     const tagImg = document.createElement("img");
     const tagH3 = document.createElement("h3");
     const tagSpan = document.createElement("span");
-    const tagOl = criarOl(objeto);
+    const tagOl = criarOl(produto);
     const tagP = document.createElement("p");
     const tagButton = document.createElement("button");
     const tagDiv = document.createElement("div");
-    tagImg.src = objeto.img;
-    tagImg.alt = `Imagem ${objeto.nome.toLowerCase()}`;
-    tagH3.innerText = objeto.nome;
-    tagSpan.innerText = objeto.secao;
-    tagP.innerText = `R$ ${objeto.preco}`;
+    tagImg.src = produto.img;
+    tagImg.alt = `Imagem ${produto.nome.toLowerCase()}`;
+    tagH3.innerText = produto.nome;
+    tagSpan.innerText = produto.secao;
+    tagP.innerText = `R$ ${produto.preco}`;
     tagButton.innerText = "Comprar";
     tagDiv.append(tagP, tagButton);
     tagLi.append(tagImg, tagH3, tagSpan, tagOl, tagDiv);
@@ -32,24 +32,24 @@ const criarCard = objeto => {
     });
     return tagLi;
 }
-const criarLista = array => {
+const criarLista = produtos => {
     const tagUl = document.querySelector(".containerListaProdutos ul");
     tagUl.innerHTML = "";
-    array.forEach((element) => {
-        tagUl.appendChild(criarCard(element));
+    produtos.forEach((produto) => {
+        tagUl.appendChild(criarCard(produto));
     })
 }
 const filtrarPorNome = () => {
     const tagInput = document.querySelector(".campoBuscaPorNome");
-    let nomeBuscado = tagInput.value.trim().toLowerCase();
-    let produtosFiltrados = produtos.filter((element) => {
-        return nomeBuscado == element.nome.toLowerCase() || nomeBuscado == element.categoria.toLowerCase() || nomeBuscado == element.secao.toLowerCase();
+    const nomeBuscado = tagInput.value.trim().toLowerCase();
+    const produtosFiltrados = produtos.filter((produto) => {
+        return nomeBuscado == produto.nome.toLowerCase() || nomeBuscado == produto.categoria.toLowerCase() || nomeBuscado == produto.secao.toLowerCase();
     });
     return produtosFiltrados;
 }
 const filtrarPorSecao = secao => {
-    let produtosFiltrados = produtos.filter((element) => {
-        return secao == element.secao;
+    const produtosFiltrados = produtos.filter((produto) => {
+        return secao == produto.secao;
     });
     return produtosFiltrados;
 }
@@ -76,7 +76,7 @@ const criarCardCarrinho = card => {
     tagDiv2.classList.add("container2");
     tagDiv.append(tagDiv1, tagDiv2);
     tagLi.append(tagImg, tagDiv);
-    tagButton.addEventListener("click", (e) => {
+    tagButton.addEventListener("click", () => {
         tagLi.remove();
         mostrarValorTotal();
     });
@@ -89,12 +89,11 @@ botaoBuscaPorNome.addEventListener("click", () => {
 });
 const botoesContainer = document.querySelectorAll("#botoesContainer button");
 botoesContainer.forEach((botao) => {
-    botao.addEventListener("click", (e) => {
-        const alvo = e.target;
-        if(alvo.innerText == "Todos Produtos") {
+    botao.addEventListener("click", () => {
+        if(botao.innerText == "Todos Produtos") {
             criarLista(produtos);
         } else {
-            const novoProdutos = filtrarPorSecao(`${e.target.innerText}`);
+            const novoProdutos = filtrarPorSecao(`${botao.innerText}`);
             criarLista(novoProdutos);
         }
     });
@@ -111,7 +110,7 @@ const calcularValorTotal = () => {
     });
   return {"soma": soma.toFixed(2), "quantidade": quantidade};
 }
-const AtualizaCarrinho = total => {
+const atualizaCarrinho = total => {
     const carrinho = document.querySelector(".containerCarrinho");
     const carrinhoInfo = document.querySelector(".carrinhoInfo");
     const carrinhoVazio = document.querySelector(".carrinhoVazio");
@@ -131,8 +130,8 @@ const AtualizaCarrinho = total => {
             carrinhoInfo.remove();
         }
         if(!carrinhoVazio) {
-            const novaCarrinhoVazio = criarCarrinhoVazio();
-            carrinho.appendChild(novaCarrinhoVazio);
+            const novoCarrinhoVazio = criarCarrinhoVazio();
+            carrinho.appendChild(novoCarrinhoVazio);
         }
     }
 }
@@ -167,6 +166,6 @@ const criarCarrinhoVazio = () => {
 }
 const mostrarValorTotal = () => {
     const total = calcularValorTotal();
-    AtualizaCarrinho(total);
+    atualizaCarrinho(total);
 }
 criarLista(produtos);
