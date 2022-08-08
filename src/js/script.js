@@ -105,14 +105,14 @@ const calcularValorTotal = () => {
 const AtualizaCarrinho = (total) => {
     const carrinho = document.querySelector(".containerCarrinho");
     const carrinhoInfo = document.querySelector(".carrinhoInfo");
-    const mensagem = document.querySelector(".mensagemCarrinhoVazio");
+    const carrinhoVazio = document.querySelector(".carrinhoVazio");
     if(total.quantidade != 0) {
         if(!carrinhoInfo) {
-            if(mensagem) {
-                mensagem.remove();
+            if(carrinhoVazio) {
+                carrinhoVazio.remove();
             }
-            const novoCarrinho = criarCarrinhoInfo(total);
-            carrinho.appendChild(novoCarrinho);
+            const novoCarrinhoInfo = criarCarrinhoInfo(total);
+            carrinho.appendChild(novoCarrinhoInfo);
         }else{
             carrinhoInfo.querySelectorAll("div p")[0].innerText = total.quantidade;
             carrinhoInfo.querySelectorAll("div p")[1].innerText = `R$ ${total.soma}`;
@@ -121,9 +121,9 @@ const AtualizaCarrinho = (total) => {
         if(carrinhoInfo) {
             carrinhoInfo.remove();
         }
-        if(!mensagem) {
-            const novaMensagem = criarMensagemCarrinhoVazio();
-            carrinho.appendChild(novaMensagem);
+        if(!carrinhoVazio) {
+            const novaCarrinhoVazio = criarCarrinhoVazio();
+            carrinho.appendChild(novaCarrinhoVazio);
         }
     }
 }
@@ -145,11 +145,16 @@ const criarCarrinhoInfo = (total) => {
     carrinhoInfo.classList.add("carrinhoInfo");
     return carrinhoInfo;
 }
-const criarMensagemCarrinhoVazio = () => {
-    const mensagem = document.createElement("h3");
-    mensagem.innerText = "Por enquanto não temos produtos no carrinho";
-    mensagem.classList.add("mensagemCarrinhoVazio");
-    return mensagem;
+const criarCarrinhoVazio = () => {
+    const tagDiv = document.createElement("div");
+    const tagImg = document.createElement("img");
+    const tagH3 = document.createElement("h3");
+    tagImg.src = "./src/img/bag.png";
+    tagImg.alt = "shopping bag";
+    tagH3.innerText = "Por enquanto não temos produtos no carrinho";
+    tagDiv.append(tagImg, tagH3);
+    tagDiv.classList.add("carrinhoVazio");
+    return tagDiv;
 }
 const mostrarValorTotal = () => {
     const total = calcularValorTotal();
