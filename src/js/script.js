@@ -24,7 +24,7 @@
     tagButton.innerText = "Comprar";
     tagDiv.append(tagP, tagButton);
     tagLi.append(tagImg, tagH3, tagSpan, tagOl, tagDiv);
-    tagButton.addEventListener("click", (e) => {
+    tagButton.addEventListener("click", () => {
         const cardCarrinho = criarCardCarrinho(tagLi);
         const listaCarrinho = document.querySelector(".containerCarrinho ul");
         listaCarrinho.appendChild(cardCarrinho);
