@@ -67,7 +67,7 @@ const produtos = [
       id: 5,
       nome: 'Leite',
       preco: '5.00',
-      secao: 'Laticinio',
+      secao: 'Laticinios',
       categoria: 'Leite',
       img: './src/img/leite.png',
       promocao: false,
