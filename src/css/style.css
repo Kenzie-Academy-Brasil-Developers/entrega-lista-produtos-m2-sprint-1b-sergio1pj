@@ -233,12 +233,21 @@ padding: 5px;
     padding: 20px;
 }
 
-.containerCarrinho h2 {
-    font-size: 24px;
+.containerCarrinho .headerCarrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background: #12B886;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.headerCarrinho h2 {
+    font-size: 16px;
     font-weight: 500;
     line-height: 27px;
-    color: #212529;
-    margin-bottom: 20px;
+    color: #FFFFFF;
 }
 
 .containerCarrinho ul {
