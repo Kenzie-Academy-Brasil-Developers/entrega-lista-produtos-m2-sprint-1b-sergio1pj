@@ -25,8 +25,7 @@ const criarCard = objeto => {
     tagDiv.append(tagP, tagButton);
     tagLi.append(tagImg, tagH3, tagSpan, tagOl, tagDiv);
     tagButton.addEventListener("click", (e) => {
-        const card = e.currentTarget.parentNode.parentNode;
-        const cardCarrinho = criarCardCarrinho(card);
+        const cardCarrinho = criarCardCarrinho(tagLi);
         const listaCarrinho = document.querySelector(".containerCarrinho ul");
         listaCarrinho.appendChild(cardCarrinho);
         mostrarValorTotal();
@@ -58,6 +57,8 @@ const criarCardCarrinho = card => {
     const tagLi = document.createElement("li");
     const tagImg = document.createElement("img");
     const tagDiv = document.createElement("div");
+    const tagDiv1 = document.createElement("div");
+    const tagDiv2 = document.createElement("div");
     const tagH3 = document.createElement("h3");
     const tagSpan = document.createElement("span");
     const tagP = document.createElement("p");
@@ -69,10 +70,14 @@ const criarCardCarrinho = card => {
     tagP.innerText = card.querySelector("p").innerText;
     tagButtonImg.src = "./src/img/trash.png";
     tagButton.appendChild(tagButtonImg);
-    tagDiv.append(tagH3, tagSpan, tagP);
-    tagLi.append(tagImg, tagDiv, tagButton);
+    tagDiv1.append(tagH3, tagButton);
+    tagDiv1.classList.add("container1");
+    tagDiv2.append(tagSpan, tagP);
+    tagDiv2.classList.add("container2");
+    tagDiv.append(tagDiv1, tagDiv2);
+    tagLi.append(tagImg, tagDiv);
     tagButton.addEventListener("click", (e) => {
-        e.currentTarget.parentNode.remove();
+        tagLi.remove();
         mostrarValorTotal();
     });
     return tagLi;
