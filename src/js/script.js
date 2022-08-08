@@ -1,11 +1,11 @@
-const criarCard = produto => {
+    function criarCard(produto) {
     const criarOl = (produto) => {
         const tagOl = document.createElement("ol");
         produto.componentes.forEach((nutriente) => {
             const tagLi = document.createElement("li");
             tagLi.innerText = nutriente;
             tagOl.appendChild(tagLi);
-        })
+        });
         return tagOl;
     }   
     const tagLi = document.createElement("li");
@@ -32,14 +32,14 @@ const criarCard = produto => {
     });
     return tagLi;
 }
-const criarLista = produtos => {
+function criarLista(produtos) {
     const tagUl = document.querySelector(".containerListaProdutos ul");
     tagUl.innerHTML = "";
     produtos.forEach((produto) => {
         tagUl.appendChild(criarCard(produto));
     })
 }
-const filtrarPorNome = () => {
+function filtrarPorNome() {
     const tagInput = document.querySelector(".campoBuscaPorNome");
     const nomeBuscado = tagInput.value.trim().toLowerCase();
     const produtosFiltrados = produtos.filter((produto) => {
@@ -47,13 +47,13 @@ const filtrarPorNome = () => {
     });
     return produtosFiltrados;
 }
-const filtrarPorSecao = secao => {
+function filtrarPorSecao(secao) {
     const produtosFiltrados = produtos.filter((produto) => {
         return secao == produto.secao;
     });
     return produtosFiltrados;
 }
-const criarCardCarrinho = card => {
+function criarCardCarrinho(card) {
     const tagLi = document.createElement("li");
     const tagImg = document.createElement("img");
     const tagDiv = document.createElement("div");
@@ -98,7 +98,7 @@ botoesContainer.forEach((botao) => {
         }
     });
 })
-const calcularValorTotal = () => {
+function calcularValorTotal() {
     const listaCarrinho = document.querySelectorAll(".containerCarrinho ul li");
     let soma = 0;
     let quantidade = listaCarrinho.length;
@@ -110,7 +110,7 @@ const calcularValorTotal = () => {
     });
   return {"soma": soma.toFixed(2), "quantidade": quantidade};
 }
-const atualizaCarrinho = total => {
+function atualizaCarrinho(total) {
     const carrinho = document.querySelector(".containerCarrinho");
     const carrinhoInfo = document.querySelector(".carrinhoInfo");
     const carrinhoVazio = document.querySelector(".carrinhoVazio");
@@ -135,7 +135,7 @@ const atualizaCarrinho = total => {
         }
     }
 }
-const criarCarrinhoInfo = total => {
+function criarCarrinhoInfo(total) {
     const carrinhoInfo = document.createElement("div");
     const carrinhoInfoQuantidade = document.createElement("div");
     const carrinhoInfoValorTotal = document.createElement("div");
@@ -153,7 +153,7 @@ const criarCarrinhoInfo = total => {
     carrinhoInfo.classList.add("carrinhoInfo");
     return carrinhoInfo;
 }
-const criarCarrinhoVazio = () => {
+function criarCarrinhoVazio() {
     const tagDiv = document.createElement("div");
     const tagImg = document.createElement("img");
     const tagH3 = document.createElement("h3");
@@ -164,7 +164,7 @@ const criarCarrinhoVazio = () => {
     tagDiv.classList.add("carrinhoVazio");
     return tagDiv;
 }
-const mostrarValorTotal = () => {
+function mostrarValorTotal(){
     const total = calcularValorTotal();
     atualizaCarrinho(total);
 }
