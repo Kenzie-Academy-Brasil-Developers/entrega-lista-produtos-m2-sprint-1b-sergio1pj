@@ -136,7 +136,7 @@ border-radius: 50px 0;
 /* CONTAINER DE PRODUTOS */
 
 .containerListaProdutos {
-width: 100%;
+width: 70%;
 }
 
 .containerListaProdutos ul {
@@ -228,7 +228,7 @@ padding: 5px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 30%;
     height: 100%;
     padding: 20px;
 }
@@ -262,8 +262,8 @@ padding: 5px;
 }
 
 .containerCarrinho ul li img {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 8px;
 }
 
@@ -278,18 +278,18 @@ padding: 5px;
 }
 
 .containerCarrinho ul li div h3 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 27px;
-    color: #212529;
+    line-height: 20px;
+    color: #000000;
     margin-bottom: 20px;
 }
 
 .containerCarrinho ul li div p {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 16px;
-    color: #868E96;
+    line-height: 24px;
+    color: #212529;
     margin-bottom: 20px;
 }
 
@@ -321,17 +321,17 @@ padding: 5px;
 }
 
 .carrinhoVazio h3 {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 27px;
-    color: #212529;
-    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #868E96;
+    text-align: center;
 }
 
 .carrinhoVazio img {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
 }
 
 .carrinhoInfo {
@@ -354,17 +354,17 @@ padding: 5px;
 }
 
 .carrinhoInfo div h3 {
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 500;
-    line-height: 27px;
-    color: #212529;
+    line-height: 13px;
+    color: #000000;
     margin-bottom: 20px;
 }
 
 .carrinhoInfo div p {
     font-size: 12px;
-    font-weight: 400;
-    line-height: 16px;
-    color: #868E96;
+    font-weight: 500;
+    line-height: 13px;
+    color: #000000;
     margin-bottom: 20px;
 }
