@@ -306,13 +306,17 @@ padding: 5px;
     margin-bottom: 20px;
 }
 
-.containerCarrinho ul li div button {
-    background: rgba(18, 184, 134, 0.05);
-    border-radius: 8px;
-    border: 1.5px solid rgba(18, 184, 134, 0.05);
-    color: #12b886;
-    padding: 5px;
-    transition: 0.5s;
+.containerCarrinho ul li button {
+    width: 25px;
+    height: 25px;
+    background: #F8F9FA;
+    border-radius: 4px;
+    border: 1px solid #F8F9FA;
+}
+
+.containerCarrinho ul li button img{
+    width: 9px;
+    height: 12px;
 }
 
 .carrinhoVazio {

@@ -62,15 +62,17 @@ const criarCardCarrinho = card => {
     const tagSpan = document.createElement("span");
     const tagP = document.createElement("p");
     const tagButton = document.createElement("button");
+    const tagButtonImg = document.createElement("img");
     tagImg.src = card.querySelector("img").src;
     tagH3.innerText = card.querySelector("h3").innerText;
     tagSpan.innerText = card.querySelector("span").innerText;
     tagP.innerText = card.querySelector("p").innerText;
-    tagButton.innerText = "Remover";
-    tagDiv.append(tagH3, tagSpan, tagP, tagButton);
-    tagLi.append(tagImg, tagDiv);
+    tagButtonImg.src = "./src/img/trash.png";
+    tagButton.appendChild(tagButtonImg);
+    tagDiv.append(tagH3, tagSpan, tagP);
+    tagLi.append(tagImg, tagDiv, tagButton);
     tagButton.addEventListener("click", (e) => {
-        e.currentTarget.parentNode.parentNode.remove();
+        e.currentTarget.parentNode.remove();
         mostrarValorTotal();
     });
     return tagLi;
@@ -102,7 +104,7 @@ const calcularValorTotal = () => {
         preco = parseFloat(preco);
         soma += preco;
     });
-  return {"soma": soma, "quantidade": quantidade};
+  return {"soma": soma.toFixed(2), "quantidade": quantidade};
 }
 const AtualizaCarrinho = total => {
     const carrinho = document.querySelector(".containerCarrinho");
@@ -117,7 +119,7 @@ const AtualizaCarrinho = total => {
             carrinho.appendChild(novoCarrinhoInfo);
         }else{
             carrinhoInfo.querySelectorAll("div p")[0].innerText = total.quantidade;
-            carrinhoInfo.querySelectorAll("div p")[1].innerText = `R$ ${total.soma.toFixed(2)}`;
+            carrinhoInfo.querySelectorAll("div p")[1].innerText = `R$ ${total.soma}`;
         }
     }else{
         if(carrinhoInfo) {
@@ -140,7 +142,7 @@ const criarCarrinhoInfo = total => {
     quantidadeH3.innerText = "Quantidade";
     quantidadeP.innerText = total.quantidade;
     valorTotalH3.innerText = "Total";
-    valorTotalP.innerText = `R$ ${total.soma.toFixed(2)}`;
+    valorTotalP.innerText = `R$ ${total.soma}`;
     carrinhoInfoQuantidade.append(quantidadeH3, quantidadeP);
     carrinhoInfoValorTotal.append(valorTotalH3, valorTotalP);
     carrinhoInfo.append(carrinhoInfoQuantidade, carrinhoInfoValorTotal);
