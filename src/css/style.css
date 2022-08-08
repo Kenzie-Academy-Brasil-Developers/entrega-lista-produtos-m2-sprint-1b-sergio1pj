@@ -178,6 +178,7 @@ line-height: 16px;
 color: #212529;
 margin: 10px 0;
 }
+
 .containerListaProdutos ul li span {
 font-size: 12px;
 font-weight: 400;
@@ -186,6 +187,7 @@ margin-top: 10px;
 display: inline-block;
 color: #868E96;
 }
+
 .containerListaProdutos ul li ol {
 list-style: decimal;
 color: #868e96;
@@ -194,10 +196,12 @@ font-weight: 400;
 line-height: 16px;
 margin-left: 15px;
 }
+
 .containerListaProdutos ul li ol li {
 margin: 0;
 width: 100%;
 }
+
 .containerListaProdutos ul li button {
 background: rgba(18, 184, 134, 0.05);
 border-radius: 8px;
@@ -206,11 +210,13 @@ color: #12b886;
 padding: 5px;
 transition: 0.5s;
 }
+
 .containerListaProdutos ul li button:hover {
 background-color: #12b886;
 border: #12b886 1px solid;
 color: white;
 }
+
 .containerListaProdutos ul li div {
 display: flex;
 justify-content: space-between;
