@@ -140,7 +140,7 @@ const criarCarrinhoInfo = (total) => {
     quantidadeH3.innerText = "Quantidade";
     quantidadeP.innerText = total.quantidade;
     valorTotalH3.innerText = "Total";
-    valorTotalP.innerText = `R$ ${total.soma}`;
+    valorTotalP.innerText = `R$ ${total.soma.toFixed(2)}`;
     carrinhoInfoQuantidade.append(quantidadeH3, quantidadeP);
     carrinhoInfoValorTotal.append(valorTotalH3, valorTotalP);
     carrinhoInfo.append(carrinhoInfoQuantidade, carrinhoInfoValorTotal);
