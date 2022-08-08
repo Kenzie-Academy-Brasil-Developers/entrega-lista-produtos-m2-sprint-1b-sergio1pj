@@ -235,12 +235,13 @@ padding: 5px;
 
 .containerCarrinho .headerCarrinho {
     display: flex;
-    justify-content: space-between;
+    justify-content:flex-start;
     align-items: center;
     width: 100%;
     padding: 10px;
     background: #12B886;
     border-radius: 8px 8px 0px 0px;
+    gap: 20px;
 }
 
 .headerCarrinho h2 {
