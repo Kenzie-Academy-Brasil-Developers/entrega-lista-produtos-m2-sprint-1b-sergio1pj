@@ -117,7 +117,7 @@ const AtualizaCarrinho = (total) => {
             carrinho.appendChild(novoCarrinhoInfo);
         }else{
             carrinhoInfo.querySelectorAll("div p")[0].innerText = total.quantidade;
-            carrinhoInfo.querySelectorAll("div p")[1].innerText = `R$ ${total.soma}`;
+            carrinhoInfo.querySelectorAll("div p")[1].innerText = `R$ ${total.soma.toFixed(2)}`;
         }
     }else{
         if(carrinhoInfo) {
