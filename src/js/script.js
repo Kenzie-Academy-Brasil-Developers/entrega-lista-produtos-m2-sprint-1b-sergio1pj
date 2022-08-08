@@ -1,4 +1,3 @@
-// seu código aqui
 const criarCard = objeto => {
     const criarOl = (objeto) => {
         const ol = document.createElement("ol");
@@ -9,7 +8,6 @@ const criarCard = objeto => {
         })
         return ol;
     }   
-    const imgAlt = "Imagem "
     const tagLi = document.createElement("li");
     const tagImg = document.createElement("img");
     const tagH3 = document.createElement("h3");
@@ -19,13 +17,20 @@ const criarCard = objeto => {
     const tagButton = document.createElement("button");
     const tagDiv = document.createElement("div");
     tagImg.src = objeto.img;
-    tagImg.alt = imgAlt.concat(`${objeto.nome.toLowerCase()}`);
+    tagImg.alt = `Imagem ${objeto.nome.toLowerCase()}`;
     tagH3.innerText = objeto.nome;
     tagSpan.innerText = objeto.secao;
     tagP.innerText = `R$ ${objeto.preco}`;
     tagButton.innerText = "Comprar";
     tagDiv.append(tagP, tagButton);
     tagLi.append(tagImg, tagH3, tagSpan, tagOl, tagDiv);
+    tagButton.addEventListener("click", (e) => {
+        const card = e.currentTarget.parentNode.parentNode;
+        const cardCarrinho = criarCardCarrinho(card);
+        const listaCarrinho = document.querySelector(".containerCarrinho ul");
+        listaCarrinho.appendChild(cardCarrinho);
+        mostrarValorTotal();
+    });
     return tagLi;
 }
 const criarLista = array => {
@@ -34,7 +39,6 @@ const criarLista = array => {
     array.forEach((element) => {
         tagUl.appendChild(criarCard(element));
     })
-    mostrarValorTotal(array);
 }
 const filtrarPorNome = () => {
     const tagInput = document.querySelector(".campoBuscaPorNome");
@@ -49,6 +53,25 @@ const filtrarPorSecao = secao => {
         return secao == element.secao;
     });
     return produtosFiltrados;
+}
+const criarCardCarrinho = card => {
+    const tagLi = document.createElement("li");
+    const tagImg = document.createElement("img");
+    const tagH3 = document.createElement("h3");
+    const tagSpan = document.createElement("span");
+    const tagP = document.createElement("p");
+    const tagButton = document.createElement("button");
+    tagImg.src = card.querySelector("img").src;
+    tagH3.innerText = card.querySelector("h3").innerText;
+    tagSpan.innerText = card.querySelector("span").innerText;
+    tagP.innerText = card.querySelector("p").innerText;
+    tagButton.innerText = "Remover";
+    tagLi.append(tagImg, tagH3, tagSpan, tagP, tagButton);
+    tagButton.addEventListener("click", (e) => {
+        e.currentTarget.parentNode.remove();
+        mostrarValorTotal();
+    });
+    return tagLi;
 }
 const botaoBuscaPorNome = document.querySelector(".estiloGeralBotoes--botaoBuscaPorNome");
 botaoBuscaPorNome.addEventListener("click", () => {
@@ -67,13 +90,69 @@ botoesContainer.forEach((botao) => {
         }
     });
 })
-const calcularValorTotal = array => {
-    let valorTotal = 0;
-    array.forEach((element) => {valorTotal += parseFloat(element.preco)});
-    return valorTotal;
+const calcularValorTotal = () => {
+    const listaCarrinho = document.querySelectorAll(".containerCarrinho ul li");
+    let soma = 0;
+    let quantidade = listaCarrinho.length;
+    listaCarrinho.forEach((element) => {
+        let preco = element.querySelector("p").innerText;
+        preco = preco.replace("R$ ", "");
+        preco = parseFloat(preco);
+        soma += preco;
+    });
+  return {"soma": soma, "quantidade": quantidade};
 }
-const mostrarValorTotal = array => {
-    let tagSpan = document.querySelector(".priceContainer span");
-    tagSpan.innerText = `R$ ${calcularValorTotal(array)}.00`;
+const AtualizaCarrinho = (total) => {
+    const carrinho = document.querySelector(".containerCarrinho");
+    const carrinhoInfo = document.querySelector(".carrinhoInfo");
+    const mensagem = document.querySelector(".mensagemCarrinhoVazio");
+    if(total.quantidade != 0) {
+        if(!carrinhoInfo) {
+            if(mensagem) {
+                mensagem.remove();
+            }
+            const novoCarrinho = criarCarrinhoInfo(total);
+            carrinho.appendChild(novoCarrinho);
+        }else{
+            carrinhoInfo.querySelectorAll("div p")[0].innerText = total.quantidade;
+            carrinhoInfo.querySelectorAll("div p")[1].innerText = `R$ ${total.soma}`;
+        }
+    }else{
+        if(carrinhoInfo) {
+            carrinhoInfo.remove();
+        }
+        if(!mensagem) {
+            const novaMensagem = criarMensagemCarrinhoVazio();
+            carrinho.appendChild(novaMensagem);
+        }
+    }
+}
+const criarCarrinhoInfo = (total) => {
+    const carrinhoInfo = document.createElement("div");
+    const carrinhoInfoQuantidade = document.createElement("div");
+    const carrinhoInfoValorTotal = document.createElement("div");
+    const quantidadeH3 = document.createElement("h3");
+    const quantidadeP = document.createElement("p");
+    const valorTotalH3 = document.createElement("h3");
+    const valorTotalP = document.createElement("p");
+    quantidadeH3.innerText = "Quantidade";
+    quantidadeP.innerText = total.quantidade;
+    valorTotalH3.innerText = "Total";
+    valorTotalP.innerText = `R$ ${total.soma}`;
+    carrinhoInfoQuantidade.append(quantidadeH3, quantidadeP);
+    carrinhoInfoValorTotal.append(valorTotalH3, valorTotalP);
+    carrinhoInfo.append(carrinhoInfoQuantidade, carrinhoInfoValorTotal);
+    carrinhoInfo.classList.add("carrinhoInfo");
+    return carrinhoInfo;
+}
+const criarMensagemCarrinhoVazio = () => {
+    const mensagem = document.createElement("h3");
+    mensagem.innerText = "Por enquanto não temos produtos no carrinho";
+    mensagem.classList.add("mensagemCarrinhoVazio");
+    return mensagem;
+}
+const mostrarValorTotal = () => {
+    const total = calcularValorTotal();
+    AtualizaCarrinho(total);
 }
 criarLista(produtos);
