@@ -24,7 +24,10 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	line-height: 24px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #868E96;
 }
 ol, ul {
 	list-style: none;
