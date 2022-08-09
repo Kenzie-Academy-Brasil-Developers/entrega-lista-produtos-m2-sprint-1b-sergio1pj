@@ -127,7 +127,7 @@ main {
 }
 .containerListaProdutos ul li h3 {
     font-size: 16px;
-    margin: 10px 0 15px;
+    margin-top: 15px;
     color: #212529;
 }
 .containerListaProdutos ul li p {
@@ -136,13 +136,13 @@ main {
 }
 .containerListaProdutos ul li span {
     font-weight: 400;
-    margin-top: 10px;
+    margin-bottom: 10px;
     display: inline-block;
 }
 .containerListaProdutos ul li ol {
     list-style: decimal;
     font-weight: 400;
-    margin: 10px 0px 0px 15px;
+    margin-left: 15px;
 }
 .containerListaProdutos ul li ol li {
     margin: 0;
