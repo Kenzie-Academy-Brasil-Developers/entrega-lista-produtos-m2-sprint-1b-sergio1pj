@@ -1,5 +1,5 @@
-    function criarCard(produto) {
-    const criarOl = (produto) => {
+function criarCard(produto) {
+    const criarOl = produto => {
         const tagOl = document.createElement("ol");
         produto.componentes.forEach((nutriente) => {
             const tagLi = document.createElement("li");
@@ -25,7 +25,7 @@
     tagDiv.append(tagP, tagButton);
     tagLi.append(tagImg, tagH3, tagSpan, tagOl, tagDiv);
     tagButton.addEventListener("click", () => {
-        const cardCarrinho = criarCardCarrinho(tagLi);
+        const cardCarrinho = criarCardCarrinho([produto.img, produto.nome, produto.secao, `R$ ${produto.preco}`]);
         const listaCarrinho = document.querySelector(".containerCarrinho ul");
         listaCarrinho.appendChild(cardCarrinho);
         mostrarValorTotal();
@@ -37,7 +37,7 @@ function criarLista(produtos) {
     tagUl.innerHTML = "";
     produtos.forEach((produto) => {
         tagUl.appendChild(criarCard(produto));
-    })
+    });
 }
 function filtrarPorNome() {
     const tagInput = document.querySelector(".campoBuscaPorNome");
@@ -53,29 +53,29 @@ function filtrarPorSecao(secao) {
     });
     return produtosFiltrados;
 }
-function criarCardCarrinho(card) {
+function criarCardCarrinho(dados) {
     const tagLi = document.createElement("li");
     const tagImg = document.createElement("img");
-    const tagDiv = document.createElement("div");
-    const tagDiv1 = document.createElement("div");
-    const tagDiv2 = document.createElement("div");
+    const tagDivExt = document.createElement("div");
+    const tagDivSup = document.createElement("div");
+    const tagDivInf = document.createElement("div");
     const tagH3 = document.createElement("h3");
     const tagSpan = document.createElement("span");
     const tagP = document.createElement("p");
     const tagButton = document.createElement("button");
     const tagButtonImg = document.createElement("img");
-    tagImg.src = card.querySelector("img").src;
-    tagH3.innerText = card.querySelector("h3").innerText;
-    tagSpan.innerText = card.querySelector("span").innerText;
-    tagP.innerText = card.querySelector("p").innerText;
+    tagImg.src = dados[0];
+    tagH3.innerText = dados[1]
+    tagSpan.innerText = dados[2];
+    tagP.innerText = dados[3];
     tagButtonImg.src = "./src/img/trash.png";
     tagButton.appendChild(tagButtonImg);
-    tagDiv1.append(tagH3, tagButton);
-    tagDiv1.classList.add("container1");
-    tagDiv2.append(tagSpan, tagP);
-    tagDiv2.classList.add("container2");
-    tagDiv.append(tagDiv1, tagDiv2);
-    tagLi.append(tagImg, tagDiv);
+    tagDivSup.append(tagH3, tagButton);
+    tagDivSup.classList.add("container1");
+    tagDivInf.append(tagSpan, tagP);
+    tagDivInf.classList.add("container2");
+    tagDivExt.append(tagDivSup, tagDivInf);
+    tagLi.append(tagImg, tagDivExt);
     tagButton.addEventListener("click", () => {
         tagLi.remove();
         mostrarValorTotal();
@@ -121,11 +121,11 @@ function atualizaCarrinho(total) {
             }
             const novoCarrinhoInfo = criarCarrinhoInfo(total);
             carrinho.appendChild(novoCarrinhoInfo);
-        }else{
+        }else {
             carrinhoInfo.querySelectorAll("div p")[0].innerText = total.quantidade;
             carrinhoInfo.querySelectorAll("div p")[1].innerText = `R$ ${total.soma}`;
         }
-    }else{
+    }else {
         if(carrinhoInfo) {
             carrinhoInfo.remove();
         }
@@ -136,22 +136,22 @@ function atualizaCarrinho(total) {
     }
 }
 function criarCarrinhoInfo(total) {
-    const carrinhoInfo = document.createElement("div");
-    const carrinhoInfoQuantidade = document.createElement("div");
-    const carrinhoInfoValorTotal = document.createElement("div");
-    const quantidadeH3 = document.createElement("h3");
-    const quantidadeP = document.createElement("p");
-    const valorTotalH3 = document.createElement("h3");
-    const valorTotalP = document.createElement("p");
-    quantidadeH3.innerText = "Quantidade";
-    quantidadeP.innerText = total.quantidade;
-    valorTotalH3.innerText = "Total";
-    valorTotalP.innerText = `R$ ${total.soma}`;
-    carrinhoInfoQuantidade.append(quantidadeH3, quantidadeP);
-    carrinhoInfoValorTotal.append(valorTotalH3, valorTotalP);
-    carrinhoInfo.append(carrinhoInfoQuantidade, carrinhoInfoValorTotal);
-    carrinhoInfo.classList.add("carrinhoInfo");
-    return carrinhoInfo;
+    const tagDivExt = document.createElement("div");
+    const tagDivSup = document.createElement("div");
+    const tagDivInf = document.createElement("div");
+    const tagH3Quant = document.createElement("h3");
+    const tagPQuant = document.createElement("p");
+    const tagH3Total = document.createElement("h3");
+    const tagPTotal = document.createElement("p");
+    tagH3Quant.innerText = "Quantidade";
+    tagPQuant.innerText = total.quantidade;
+    tagH3Total.innerText = "Total";
+    tagPTotal.innerText = `R$ ${total.soma}`;
+    tagDivSup.append(tagH3Quant, tagPQuant);
+    tagDivInf.append(tagH3Total, tagPTotal);
+    tagDivExt.append(tagDivSup, tagDivInf);
+    tagDivExt.classList.add("carrinhoInfo");
+    return tagDivExt;
 }
 function criarCarrinhoVazio() {
     const tagDiv = document.createElement("div");
@@ -164,7 +164,7 @@ function criarCarrinhoVazio() {
     tagDiv.classList.add("carrinhoVazio");
     return tagDiv;
 }
-function mostrarValorTotal(){
+function mostrarValorTotal() {
     const total = calcularValorTotal();
     atualizaCarrinho(total);
 }
