@@ -79,22 +79,6 @@ main {
     border-radius: 8px;
     padding: 10px 20px;
 }
-.priceContainer div {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.priceContainer div img {
-    width: 2rem;
-}
-.priceContainer span {
-    background-color: #212529;
-    border-radius: 4px;
-    color: #fff;
-    padding: 10px;
-    font-style: normal;
-    font-size: 14px;
-}
 .containerVitrine {
     display: flex;
     width: 100%;
@@ -296,4 +280,52 @@ main {
 }
 .carrinhoInfo div:first-child {
    background:#F8F9FA;
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        margin : 0 20px;
+    }
+    .filtersContainer {
+        display: block;
+    }
+    #botoesContainer {
+       overflow-x: scroll;
+       margin-bottom: 20px;
+    }
+    .containerBuscaPorNome {
+        display: flex;
+        justify-content: center;
+    }
+    .containerVitrine {
+        display: block;
+    }
+    .containerListaProdutos {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .containerListaProdutos ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        margin: 0;
+    }
+    .containerListaProdutos ul li {
+        width:100%;
+    }
+    .containerListaProdutos ul li ol {
+        display: none;
+    }
+    .containerListaProdutos ul li img {
+        width: 274px;
+        height: 175px;
+    }
+    .containerCarrinho {
+        width: 100%;
+        padding: 0;
+    }
 }
